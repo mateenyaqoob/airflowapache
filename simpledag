@@ -1,0 +1,21 @@
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+
+def start_task():
+    print("Pipeline started!")
+
+def train_model():
+    print("Training model...")
+
+with DAG(
+    dag_id='simple_ml_dag',
+    start_date=datetime(2025, 1, 1),
+    schedule_interval='@daily',
+    catchup=False
+) as dag:
+
+    start = PythonOperator(task_id='start', python_callable=start_task)
+    train = PythonOperator(task_id='train', python_callable=train_model)
+
+    start >> train
