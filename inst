@@ -1,0 +1,7 @@
+Place this file in Airflow’s dags/ folder and start the scheduler/webserver:
+
+airflow webserver -p 8080
+airflow scheduler
+
+
+Then open: http://localhost:8080
